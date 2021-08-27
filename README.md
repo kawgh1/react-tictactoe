@@ -8,4 +8,6 @@ Configuration Settings
     - created .eslintrc file for eslint
     - created .prettierrc file for prettier
 
-ok
+### Tools Used
+
+- Hooks
