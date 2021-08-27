@@ -7,3 +7,5 @@ Configuration Settings
     - contained in dev-dependencies.txt
     - created .eslintrc file for eslint
     - created .prettierrc file for prettier
+
+ok
