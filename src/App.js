@@ -9,26 +9,34 @@ const App = () => {
 
   // board is now an array of 9 elements all set to null
     // setBoard is setState
-    const [board, setBoard] = useState(Array(9).fill(null));
+    const [history, setHistory] = useState([ {board: Array(9).fill(null), isXNext: true},
+    ]);
 
-    // isNext is is next player
-    const [isXNext, setIsXNext] = useState(false);
+    const [currentMove, setCurrentMove] = useState(0);
 
-    const winner = calculateWinner(board);
+    const current = history[currentMove];
 
-    const message = winner ? `Winner is ${winner}` : `Next Player is ${isXNext ? 'X' : 'O'}`; 
+    // isXNext is is next player
+    // const [isXNext, setIsXNext] = useState(false);
+
+    const winner = calculateWinner(current.board);
+
+    const message = winner ? `Winner is ${winner}` : `Next Player is ${current.isXNext ? 'X' : 'O'}`; 
 
     
 
     const handleSquareClick = (position) => {
 
-        if (board[position] || winner) { return}
-        setBoard( (prevState) => {
+        if (current.board[position] || winner) { return}
 
-            return prevState.map((square, pos) => {
+        setHistory( (prevState) => {
+
+          const last = prevState[prevState.length -1];
+
+            return last.board.map((square, pos) => {
 
                 if(pos === position) {
-                    return isXNext ? 'X' : 'O'
+                    return last.isXNext ? 'X' : 'O'
                 }
 
                 return square;
